@@ -2,7 +2,7 @@
   "name": "jshardparts",
   "version": "1.0.0",
   "description": "",
-  "main": "csbin.js",
+  "main": "callbacks.js",
   "scripts": {
     "test": "jest --watchAll"
   },
