@@ -64,9 +64,6 @@ describe("array functions", () => {
   });
 
   test("Object forEach", () => {
-    // csbin.forEachObject = jest.fn((i) => {
-    //   console.log(i);
-    // });
     let result = "";
     const callback = (value, key) => (result += key + value);
     csbin.forEachObject({ a: "one", b: 2, c: true }, callback);
