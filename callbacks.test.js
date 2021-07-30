@@ -324,8 +324,6 @@ test("highestFunc", () => {
 });
 
 test("combineOperations", () => {
-  // csbin.combineOperations = jest.fn((i) => "addTen");
-
   const cb1 = (n) => n + 100;
   const cb2 = (n) => n / 5;
   const cb3 = (n) => n * 3;
