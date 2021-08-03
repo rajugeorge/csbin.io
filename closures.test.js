@@ -1,5 +1,9 @@
 const closures = require("./closures");
 
+afterEach(() => {
+  jest.useRealTimers();
+});
+
 test("createFunction", () => {
   let wrapper = closures.createFunction;
 
@@ -85,4 +89,66 @@ test("once", () => {
   expect(result1).toEqual(6);
   expect(result2).toEqual(6);
   expect(result3).toEqual(6);
+});
+
+test("after", () => {
+  // closures.after = jest.fn(
+  //   (count, fn) =>
+  //     (...args) =>
+  //       fn(...args)
+  // );
+
+  const called = jest.fn(function () {
+    console.log("hello");
+  });
+  const afterCalled = closures.after(3, called);
+
+  afterCalled();
+  afterCalled();
+  afterCalled();
+
+  expect(called).toHaveBeenCalledTimes(1);
+});
+
+test("delay", () => {
+  // closures.delay = jest.fn((fn, wait, ...rest) => (...args) => {
+  //   fn(...rest, ...args);
+  // });
+
+  jest.useFakeTimers();
+
+  const called = jest.fn(function (...args) {
+    console.log(...args);
+  });
+
+  const delayCalled = closures.delay(called, 2000, 1, 2, 3);
+
+  delayCalled(4, 5, 6);
+
+  // At this point in time, the callback should not have been called yet
+  expect(called).not.toBeCalled();
+
+  // Fast-forward until all timers have been executed
+  jest.runAllTimers();
+
+  // Now our callback should have been called!
+  expect(called).toHaveBeenCalledTimes(1, 2, 3, 4, 5, 6);
+});
+
+test("rollCall", () => {
+  // closures.rollCall = jest.fn((names) => () => "Victoria");
+
+  const rollCaller = closures.rollCall(["Victoria", "Juan", "Ruth"]);
+  const rollCaller2 = closures.rollCall([]);
+  const result1 = rollCaller();
+  const result2 = rollCaller();
+  const result3 = rollCaller();
+  const result4 = rollCaller();
+  const result5 = rollCaller2();
+
+  expect(result1).toEqual("Victoria");
+  expect(result2).toEqual("Juan");
+  expect(result3).toEqual("Ruth");
+  expect(result4).toEqual("Everyone accounted for");
+  expect(result5).toEqual("Everyone accounted for");
 });
