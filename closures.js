@@ -133,6 +133,31 @@ function cycleIterator(array) {
   };
 }
 
+// create a function with
+// Input : callback , value
+function defineFirstArg(func, arg) {
+  // return a function that takes arguments
+  return function (...args) {
+    // return the result by calling the passed fn
+    // with first parameter as the arg passed to the main fn
+    return func(arg, ...args);
+  };
+}
+
+// create a function with
+// Input : function that take any number of arguments
+function dateStamp(func) {
+  // return a function that takes any number of arguments
+  // and returns an object with date as current date and output
+  // as the result of executing the passed function
+  return function (...args) {
+    return {
+      date: Date.now(),
+      output: func(...args),
+    };
+  };
+}
+
 module.exports = {
   createFunction,
   createFunctionPrinter,
@@ -144,4 +169,6 @@ module.exports = {
   rollCall,
   saveOutput,
   cycleIterator,
+  defineFirstArg,
+  dateStamp,
 };

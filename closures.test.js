@@ -182,3 +182,38 @@ test("cycleIterator", () => {
   expect(result3).toEqual("Sun");
   expect(result4).toEqual("Fri");
 });
+
+test("defineFirstArg", () => {
+  // closures.defineFirstArg = jest.fn(
+  //   (func, arg) =>
+  //     (...args) =>
+  //       func(arg, ...args)
+  // );
+
+  const subtract = (big, small) => big - small;
+
+  const subFrom20 = closures.defineFirstArg(subtract, 20);
+
+  const result = subFrom20(5);
+
+  expect(result).toEqual(15);
+});
+
+test("dateStamp", () => {
+  // closures.dateStamp =
+  //   (func) =>
+  //   (...args) => {
+  //     return { date: Date.now(), output: func(...args) };
+  //   };
+  const dateNow = Date.now;
+  Date.now = () => 123456789;
+  const stampedMultBy2 = closures.dateStamp((n) => n * 2);
+
+  const result1 = stampedMultBy2(4);
+  const result2 = stampedMultBy2(6);
+
+  expect(result1).toEqual({ date: 123456789, output: 8 });
+  expect(result2).toEqual({ date: 123456789, output: 12 });
+
+  Date.now = dateNow;
+});
