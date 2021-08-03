@@ -92,6 +92,47 @@ function rollCall(names) {
   };
 }
 
+//create a function with
+// input : function that takes only one argument, string for password
+function saveOutput(func, magicWord) {
+  // create an object to store all the inputs and outputs
+  const obj = {};
+  // create a function copy that accepts only one argument
+  const copyObj = (input) => {
+    // if the input is similar to password return the object
+    if (input === magicWord) {
+      return obj;
+    }
+    // else pass the input to the function and store the result in object
+    obj[input] = func(input);
+  };
+  //return the function copy
+  return copyObj;
+}
+
+// create a function with
+// Input : function that takes no argument
+function cycleIterator(array) {
+  // store the index with initial value as 0
+  let index = 0;
+  // create and return a function that takes no arguments
+  return function () {
+    // create a variable to store the value in current index.
+    let name = "";
+    // if index is greater than or equal to array length
+    if (index >= array.length) {
+      // reset the index to 0
+      index = 0;
+    }
+    // store the value at current index
+    name = array[index];
+    // increment the index
+    index++;
+    // return the value
+    return name;
+  };
+}
+
 module.exports = {
   createFunction,
   createFunctionPrinter,
@@ -101,4 +142,6 @@ module.exports = {
   after,
   delay,
   rollCall,
+  saveOutput,
+  cycleIterator,
 };

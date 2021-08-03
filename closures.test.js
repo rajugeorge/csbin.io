@@ -139,11 +139,12 @@ test("rollCall", () => {
   // closures.rollCall = jest.fn((names) => () => "Victoria");
 
   const rollCaller = closures.rollCall(["Victoria", "Juan", "Ruth"]);
-  const rollCaller2 = closures.rollCall([]);
   const result1 = rollCaller();
   const result2 = rollCaller();
   const result3 = rollCaller();
   const result4 = rollCaller();
+
+  const rollCaller2 = closures.rollCall([]);
   const result5 = rollCaller2();
 
   expect(result1).toEqual("Victoria");
@@ -151,4 +152,33 @@ test("rollCall", () => {
   expect(result3).toEqual("Ruth");
   expect(result4).toEqual("Everyone accounted for");
   expect(result5).toEqual("Everyone accounted for");
+});
+
+test("8. saveOutput", () => {
+  // closures.saveOutput = (fn, magicWord) => (num) => {
+  //   return { 2: 4, 9: 18 };
+  // };
+
+  const multiplyBy2 = (num) => num * 2;
+  const multBy2AndLog = closures.saveOutput(multiplyBy2, "boo");
+  multBy2AndLog(2);
+  multBy2AndLog(9);
+  const total = multBy2AndLog("boo");
+
+  expect(total).toEqual({ 2: 4, 9: 18 });
+});
+
+test("cycleIterator", () => {
+  // closures.cycleIterator = jest.fn((input) => () => "Fri");
+
+  const getDay = closures.cycleIterator(["Fri", "Sat", "Sun"]);
+  const result1 = getDay();
+  const result2 = getDay();
+  const result3 = getDay();
+  const result4 = getDay();
+
+  expect(result1).toEqual("Fri");
+  expect(result2).toEqual("Sat");
+  expect(result3).toEqual("Sun");
+  expect(result4).toEqual("Fri");
 });
