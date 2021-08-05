@@ -148,9 +148,9 @@ function defineFirstArg(func, arg) {
 // Input : function that take any number of arguments
 function dateStamp(func) {
   // return a function that takes any number of arguments
-  // and returns an object with date as current date and output
-  // as the result of executing the passed function
   return function (...args) {
+    // and returns an object with date as current date and output
+    // as the result of executing the passed function
     return {
       date: Date.now(),
       output: func(...args),
