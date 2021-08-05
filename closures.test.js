@@ -217,3 +217,163 @@ test("dateStamp", () => {
 
   Date.now = dateNow;
 });
+
+test("censor", () => {
+  // closures.censor = jest.fn(
+  //   () =>
+  //     (...args) =>
+  //       "The slow, brown fox jumps over the lazy cats."
+  // );
+
+  const changeScene = closures.censor();
+  changeScene("dogs", "cats");
+  changeScene("quick", "slow");
+  let result = changeScene("The quick, brown fox jumps over the lazy dogs.");
+
+  const changeScene2 = closures.censor();
+  let result2 = changeScene2("The quick, brown fox jumps over the lazy dogs.");
+
+  expect(result).toEqual("The slow, brown fox jumps over the lazy cats.");
+  expect(result2).toEqual("The quick, brown fox jumps over the lazy dogs.");
+});
+
+test("createSecretHolder", () => {
+  // closures.createSecretHolder = (input) => {
+  //   let value = input;
+  //   return {
+  //     getSecret: function () {
+  //       return value;
+  //     },
+  //     setSecret: function (input) {
+  //       value = input;
+  //     },
+  //   };
+  // };
+
+  const obj = closures.createSecretHolder(5);
+  let result = obj.getSecret(); // => returns 5
+  console.log(result);
+  expect(result).toEqual(5);
+  obj.setSecret(12);
+  obj.getSecret(); // => returns 2
+  result = obj.getSecret();
+  expect(result).toEqual(12);
+});
+
+test("callTimes", () => {
+  // closures.callTimes = () => {
+  //   let i = 0;
+  //   return () => ++i;
+  // };
+
+  let myNewFunc1 = closures.callTimes();
+  let myNewFunc2 = closures.callTimes();
+  expect(myNewFunc1()).toEqual(1);
+  expect(myNewFunc1()).toEqual(2);
+  expect(myNewFunc1()).toEqual(3);
+  expect(myNewFunc2()).toEqual(1);
+  expect(myNewFunc2()).toEqual(2);
+});
+
+test("russianRoulette", () => {
+  // closures.russianRoulette = (limit) => {
+  //   let i = 0;
+  //   return function () {
+  //     i++;
+  //     if (i > limit) {
+  //       return "reload to play again";
+  //     } else if (i === limit) {
+  //       return "bang";
+  //     } else if (i < limit) {
+  //       return "click";
+  //     }
+  //   };
+  // };
+
+  const play = closures.russianRoulette(3);
+  expect(play()).toEqual("click"); // => should log 'click'
+  expect(play()).toEqual("click"); // => should log 'click'
+  expect(play()).toEqual("bang"); // => should log 'bang'
+  expect(play()).toEqual("reload to play again"); // => should log 'reload to play again'
+  expect(play()).toEqual("reload to play again"); // => should log 'reload to play again'
+});
+
+test("average", () => {
+  // closures.average = () => (input) => input;
+
+  const avgSoFar = closures.average();
+
+  expect(avgSoFar()).toEqual(0); // => should log 0
+  expect(avgSoFar(4)).toEqual(4); // => should log 4
+  expect(avgSoFar(8)).toEqual(6); // => should log 6
+  expect(avgSoFar()).toEqual(6); // => should log 6
+  expect(avgSoFar(12)).toEqual(8); // => should log 8
+  expect(avgSoFar()).toEqual(8); // => should log 8
+});
+
+test("makeFuncTester", () => {
+  // closures.makeFuncTester = (inputs) => (cb) => true;
+
+  const capLastTestCases = [];
+  capLastTestCases.push(["hello", "hellO"]);
+  capLastTestCases.push(["goodbye", "goodbyE"]);
+  capLastTestCases.push(["howdy", "howdY"]);
+  const shouldCapitalizeLast = closures.makeFuncTester(capLastTestCases);
+  const capLastAttempt1 = (str) => str.toUpperCase();
+  const capLastAttempt2 = (str) =>
+    str.slice(0, -1) + str.slice(-1).toUpperCase();
+  expect(shouldCapitalizeLast(capLastAttempt1)).toEqual(false); // => should log false
+  expect(shouldCapitalizeLast(capLastAttempt2)).toEqual(true); // => should log true
+});
+
+test("makeHistory", () => {
+  // closures.makeHistory = (input) => (str) => str;
+
+  const myActions = closures.makeHistory(2);
+  expect(myActions("jump")).toEqual("jump done"); // => should log 'jump done'
+  expect(myActions("undo")).toEqual("jump undone"); // => should log 'jump undone'
+  expect(myActions("walk")).toEqual("walk done"); // => should log 'walk done'
+  expect(myActions("code")).toEqual("code done"); // => should log 'code done'
+  expect(myActions("pose")).toEqual("pose done"); // => should log 'pose done'
+  expect(myActions("undo")).toEqual("pose undone"); // => should log 'pose undone'
+  expect(myActions("undo")).toEqual("code undone"); // => should log 'code undone'
+  expect(myActions("undo")).toEqual("nothing to undo"); // => should log 'nothing to undo'
+});
+
+test("blackjack", () => {
+  // closures.blackjack = (inputArr) => (num1, num2) => () => num1 + num2;
+
+  /*** DEALER ***/
+  const deal = closures.blackjack([
+    2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11,
+  ]);
+
+  /*** PLAYER 1 ***/
+  const i_like_to_live_dangerously = deal(4, 5);
+  expect(i_like_to_live_dangerously()).toEqual(9); // => should log 9
+  expect(i_like_to_live_dangerously()).toEqual(11); // => should log 11
+  expect(i_like_to_live_dangerously()).toEqual(17); // => should log 17
+  expect(i_like_to_live_dangerously()).toEqual(18); // => should log 18
+  expect(i_like_to_live_dangerously()).toEqual("bust"); // => should log 'bust'
+  expect(i_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!'
+  expect(i_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!'
+
+  /*** BELOW LINES ARE FOR THE BONUS ***/
+
+  /*** PLAYER 2 ***/
+  const i_TOO_like_to_live_dangerously = deal(2, 2);
+  expect(i_TOO_like_to_live_dangerously()).toEqual(4); // => should log 4
+  expect(i_TOO_like_to_live_dangerously()).toEqual(15); // => should log 15
+  expect(i_TOO_like_to_live_dangerously()).toEqual(19); // => should log 19
+  expect(i_TOO_like_to_live_dangerously()).toEqual("bust"); // => should log 'bust'
+  expect(i_TOO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
+  expect(i_TOO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
+
+  /*** PLAYER 3 ***/
+  const i_ALSO_like_to_live_dangerously = deal(3, 7);
+  expect(i_ALSO_like_to_live_dangerously()).toEqual(10); // => should log 10
+  expect(i_ALSO_like_to_live_dangerously()).toEqual(13); // => should log 13
+  expect(i_ALSO_like_to_live_dangerously()).toEqual("bust"); // => should log 'bust'
+  expect(i_ALSO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
+  expect(i_ALSO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
+});

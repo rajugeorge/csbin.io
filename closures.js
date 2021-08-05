@@ -158,6 +158,185 @@ function dateStamp(func) {
   };
 }
 
+//create a function with
+// Input : no
+function censor() {
+  // create an object to hold the values to be censored
+  const obj = {};
+  // return a function that takes two params
+  return function (str1, str2) {
+    // if the second param is undefined then
+    // replace the first param with censored values and return
+    if (str2 === undefined) {
+      let censored = str1;
+      for (const key in obj) {
+        censored = censored.replace(key, obj[key]);
+      }
+      return censored;
+    }
+    // add the two params to the object as key value pairs
+    obj[str1] = str2;
+  };
+}
+
+//create a function with
+// Input : any value that is set as secret
+function createSecretHolder(secret) {
+  // create a param to hold the value
+  let value = secret;
+  // create an object
+  let obj = {};
+  obj.setSecret = (input) => {
+    // create a set function and attach to object
+    value = input;
+  };
+  // create a get function and attach to object
+  obj.getSecret = () => {
+    return value;
+  };
+  // return object
+  return obj;
+}
+
+// create a function
+// Input :
+function callTimes() {
+  // create a variable to track the number of times
+  let count = 0;
+  // return a function
+  return function () {
+    // update the call count and return it
+    return ++count;
+  };
+}
+
+// create a function
+// Input : limit
+function russianRoulette(num) {
+  // create a variable to store the number of times the function is called.
+  let i = 0;
+  // return a function
+  return function () {
+    // update the variable
+    i++;
+    // if the variable is greater than limit return 'reload to play again'
+    if (i > num) {
+      return "reload to play again";
+    } else if (i === num) {
+      // if the variable is equal to limit return 'bang'
+      return "bang";
+    } else if (i < num) {
+      // if the variable is less than limit return 'click'
+      return "click";
+    }
+  };
+}
+
+// create a function
+// input :
+function average() {
+  // create array to store the valid inputs
+  let noOfElements = 0;
+  // initalize the average variable to 0
+  let sum = 0;
+  // return a function which takes one input
+  return function (input) {
+    if (input) {
+      noOfElements++;
+      sum += input;
+    }
+    return noOfElements > 0 ? sum / noOfElements : 0;
+  };
+  // if the input is valid, add it to the array
+  // divide the sum of the array by its length and return
+}
+
+// create a function
+// input : array of arrays
+function makeFuncTester(arrOfTests) {
+  // return a function that takes a callback
+  return function (cb) {
+    // iterate the inputs
+    for (let arr of arrOfTests) {
+      // if the second element is not equal to the output from the callback to
+      // which first element is passed return false
+      if (arr[1] !== cb(arr[0])) {
+        return false;
+      }
+    }
+    // return true
+    return true;
+  };
+}
+
+// create a function with
+// input : history limit
+function makeHistory(limit) {
+  // create history array
+  let history = [];
+  // create history array index
+  let index = -1;
+  return function (str) {
+    // if push
+    if (str !== "undo") {
+      // increment the index
+      index++;
+      // if index > limit
+      if (index >= limit) {
+        // pop the first item from the array (shift)
+        history.shift();
+        index--;
+      }
+      // push to the array
+      history.push(str);
+      return str + " done";
+    } else {
+      // else
+      // if undo
+      // if index >=0
+      // pop the last item
+
+      if (index >= 0) {
+        // reduce the index
+        index--;
+        var removedElement = history.pop();
+        return removedElement + " undone";
+      } else {
+        // else
+        // print "nothing to undo"
+        return "nothing to undo";
+      }
+    }
+  };
+}
+
+function blackjack(inputArr) {
+  let index = 0;
+  return function (num1, num2) {
+    let started = false;
+    let busted = false;
+    let sum = 0;
+    return function () {
+      if (busted) {
+        return "you are done!";
+      }
+      if (!started) {
+        started = true;
+        sum = num1 + num2;
+      } else {
+        sum += inputArr[index];
+        index++;
+      }
+      if (sum > 21) {
+        busted = true;
+        return "bust";
+      } else {
+        return sum;
+      }
+    };
+  };
+}
+
 module.exports = {
   createFunction,
   createFunctionPrinter,
@@ -171,4 +350,12 @@ module.exports = {
   cycleIterator,
   defineFirstArg,
   dateStamp,
+  censor,
+  createSecretHolder,
+  callTimes,
+  russianRoulette,
+  average,
+  makeFuncTester,
+  makeHistory,
+  blackjack,
 };
