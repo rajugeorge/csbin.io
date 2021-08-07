@@ -12,13 +12,20 @@ test("testMe", () => {
 });
 
 test("delayedGreet", () => {
-  async.delayGreet = () => {
-    console.log("hello");
-  };
-
-  async.delayGreet();
+  // async.delayedGreet = () => {
+  //   console.log("hello");
+  // };
+  jest.useFakeTimers();
+  async.delayedGreet();
+  jest.runAllTimers();
 });
-test.todo("helloGoodbye");
+test("helloGoodbye", ()=>{
+  // async.helloGoodbye = ()=>{console.log("hello");}
+
+  jest.useFakeTimers();
+  async.helloGoodbye()
+  jest.runAllTimers()
+});
 test.todo("brokenRecord");
 test.todo("limitedRepeat");
 test.todo("everyXsecsForYsecs");
