@@ -7,7 +7,7 @@ function testMe() {
   console.log("Partnah");
 }
 
-function delayedGreet(){
+function delayedGreet() {
   setTimeout(() => {
     console.log("hello");
   }, 3000);
@@ -20,8 +20,34 @@ function helloGoodbye() {
   }, 3000);
 }
 
+function brokenRecord() {
+  let count = 0;
+  const timeInterval = setInterval(() => {
+    if (count < 10) {
+      console.log("hi again");
+      count++;
+    } else {
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+}
+
+function limitedRepeat(limit) {
+  let count = 0;
+  const timeInterval = setInterval(() => {
+    if (count < limit) {
+      console.log("hi for now");
+      count++;
+    } else {
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+}
+
 module.exports = {
   testMe,
   delayedGreet,
-  helloGoodbye
+  helloGoodbye,
+  brokenRecord,
+  limitedRepeat,
 };

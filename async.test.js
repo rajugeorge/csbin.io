@@ -19,15 +19,30 @@ test("delayedGreet", () => {
   async.delayedGreet();
   jest.runAllTimers();
 });
-test("helloGoodbye", ()=>{
+
+test("helloGoodbye", () => {
   // async.helloGoodbye = ()=>{console.log("hello");}
 
   jest.useFakeTimers();
-  async.helloGoodbye()
-  jest.runAllTimers()
+  async.helloGoodbye();
+  jest.runAllTimers();
 });
-test.todo("brokenRecord");
-test.todo("limitedRepeat");
+
+test("brokenRecord", () => {
+  // async.brokenRecord = ()=>{console.log("Broken record");}
+  jest.useFakeTimers();
+  async.brokenRecord();
+  jest.runAllTimers();
+});
+
+test("limitedRepeat", () => {
+  // async.limitedRepeat = (input) => {
+  //   console.log("limitedRepeat");
+  // };
+  jest.useFakeTimers();
+  async.limitedRepeat(5);
+  jest.runAllTimers();
+});
 test.todo("everyXsecsForYsecs");
 test.todo("delayCounter");
 test.todo("promised");
