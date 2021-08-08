@@ -44,10 +44,67 @@ function limitedRepeat(limit) {
   }, 1000);
 }
 
+function everyXsecsForYsecs(cb, interval, duration) {
+  let intervalSum = 0;
+  const timeInterval = setInterval(() => {
+    intervalSum += interval;
+    if (intervalSum <= duration) {
+      cb();
+    } else {
+      clearInterval(timeInterval);
+    }
+  }, interval);
+}
+
+function promised(val) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(val);
+    }, 2000);
+  });
+}
+
+class SecondClock {
+  constructor(cb) {
+    this.cb = cb;
+    this.secCount = 0;
+    this.secInterval = 0;
+  }
+  start() {
+    this.secInterval = setInterval(() => {
+      this.secCount++;
+      this.secCount = this.secCount > 60 ? 1 : this.secCount;
+      this.cb(this.secCount);
+    }, 1000);
+  }
+
+  reset() {
+    this.secCount = 0;
+    clearInterval(this.secInterval);
+  }
+}
+
+function debounce(cb, timeout) {
+  let timer = undefined;
+  return function (...args) {
+    if (timer === undefined) {
+      timer = setTimeout(() => {
+        timer = undefined;
+      }, timeout);
+      return cb(...args);
+    }
+    return undefined;
+  };
+}
+
 module.exports = {
   testMe,
   delayedGreet,
   helloGoodbye,
   brokenRecord,
   limitedRepeat,
+  everyXsecsForYsecs,
+  promised,
+  SecondClock,
+  debounce,
 };
