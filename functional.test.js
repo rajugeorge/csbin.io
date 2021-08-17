@@ -1,0 +1,15 @@
+test.todo("addTwo");
+test.todo("addS");
+test.todo("map");
+test.todo("forEach");
+test.todo("mapWith");
+test.todo("reduce");
+test.todo("intersection");
+test.todo("union");
+test.todo("objOfMatches");
+test.todo("multiMap");
+test.todo("commutative");
+test.todo("objFilter");
+test.todo("rating");
+test.todo("pipe");
+test.todo("highestFunc");
