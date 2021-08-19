@@ -71,3 +71,11 @@ test("promiseAll", async () => {
     ]);
   });
 });
+
+test("promiseTimerAll", async () => {
+  jest.useFakeTimers();
+  promises.getAllTimer().then((values) => {
+    expect(values).toEqual(["one", "two", "three"]);
+  });
+  jest.runAllTimers();
+});

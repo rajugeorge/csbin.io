@@ -61,6 +61,22 @@ function getAllData() {
   return Promise.all([fakeAPICall(0), fakeAPICall(1), fakeAPICall(2)]);
 }
 
+function timerPromiser(time, text) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(text);
+    }, time);
+  });
+}
+
+function getAllTimer() {
+  return Promise.all([
+    timerPromiser(3000, "one"),
+    timerPromiser(1000, "two"),
+    timerPromiser(2000, "three"),
+  ]);
+}
+
 module.exports = {
   sayHello,
   promise,
@@ -69,4 +85,5 @@ module.exports = {
   secondPromise,
   firstPromise,
   getAllData,
+  getAllTimer,
 };
