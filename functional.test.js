@@ -45,5 +45,4 @@ test('curriedAddThreeNums', () => {
 
 test('curriedAddTwoNumsToFive', () => {
   expect(functional.curriedAddTwoNumsToFive(6)(7)).toEqual(18);
-  functional._curry((a, b) => a);
 });

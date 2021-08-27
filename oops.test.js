@@ -102,7 +102,6 @@ test('adminFromFactory', () => {
 });
 
 test('Mixins', () => {
-  const Dog = oops.Dog;
   const robotMixin = oops.robotMixin;
 
   let robotFido = new oops.Dog();

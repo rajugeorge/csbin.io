@@ -5,7 +5,7 @@ function sayHello() {
 }
 
 function promise() {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     setTimeout(() => {
       resolve('Resolved!!!');
     }, 1000);
@@ -26,7 +26,7 @@ function promise2() {
 }
 
 function delay() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(resolve, 1000);
   });
 }
@@ -62,7 +62,7 @@ function getAllData() {
 }
 
 function timerPromiser(time, text) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(text);
     }, time);

@@ -32,7 +32,6 @@ test('outer', () => {
 
   const wrapper = closures.outer;
   const closure1 = wrapper();
-  const closure2 = wrapper();
 
   // closure1();
   // closure1();

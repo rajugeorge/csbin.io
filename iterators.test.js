@@ -90,7 +90,7 @@ test('Words', () => {
 
   const helloWorld = new iterators.Words('Hello World');
   let result = [];
-  for (word of helloWorld) {
+  for (let word of helloWorld) {
     result.push(word);
   }
   expect(result).toEqual(['Hello', 'World']);
@@ -123,7 +123,7 @@ test('createConversation', () => {
 
   const iterator = iterators.createConversation('english');
   jest.useFakeTimers();
-  const interval = iterator.next();
+  iterator.next();
   jest.runAllTimers();
 });
 

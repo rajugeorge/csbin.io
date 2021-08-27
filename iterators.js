@@ -107,7 +107,7 @@ function* createConversation(text) {
 
 function waitForVerb(noun) {
   const verb = 'sitting';
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(noun + ' ' + verb);
     }, 3000);

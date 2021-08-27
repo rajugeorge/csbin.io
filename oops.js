@@ -19,8 +19,6 @@ function personFromPersonStore(name, age) {
   return obj;
 }
 
-const sandra = personFromPersonStore('Sandra', 26);
-
 personStore.introduce = function (name) {
   return `Hi, my name is ${name}`;
 };

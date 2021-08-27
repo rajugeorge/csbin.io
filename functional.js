@@ -46,11 +46,6 @@ const curriedAddThreeNums = (num1) => (num2) => (num3) => num1 + num2 + num3;
 
 const curriedAddTwoNumsToFive = curriedAddThreeNums(5);
 
-const _curry = function (fn) {
-  const paramslength = fn.length;
-  console.log(fn[0]);
-};
-
 module.exports = {
   functionValidator,
   allClear,
@@ -58,5 +53,4 @@ module.exports = {
   movieSelector,
   curriedAddThreeNums,
   curriedAddTwoNumsToFive,
-  _curry,
 };
