@@ -1,13 +1,13 @@
 function sayHello() {
   setTimeout(() => {
-    console.log("Hello!");
+    console.log('Hello!');
   }, 3000);
 }
 
 function promise() {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
-      resolve("Resolved!!!");
+      resolve('Resolved!!!');
     }, 1000);
   });
 }
@@ -20,7 +20,7 @@ function promise() {
 function promise2() {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
-      reject("Rejected!!!");
+      reject('Rejected!!!');
     }, 1000);
   });
 }
@@ -32,7 +32,7 @@ function delay() {
 }
 
 function secondPromise() {
-  return Promise.resolve("Second!!!");
+  return Promise.resolve('Second!!!');
 }
 
 function firstPromise(promise) {
@@ -40,9 +40,9 @@ function firstPromise(promise) {
 }
 
 const fakePeople = [
-  { name: "Rudolph", hasPets: false, currentTemp: 98.6 },
-  { name: "Zebulon", hasPets: true, currentTemp: 22.6 },
-  { name: "Harold", hasPets: true, currentTemp: 98.3 },
+  { name: 'Rudolph', hasPets: false, currentTemp: 98.6 },
+  { name: 'Zebulon', hasPets: true, currentTemp: 22.6 },
+  { name: 'Harold', hasPets: true, currentTemp: 98.3 },
 ];
 
 const fakeAPICall = (i) => {
@@ -51,7 +51,7 @@ const fakeAPICall = (i) => {
     if (i >= 0 && i < fakePeople.length) {
       setTimeout(() => resolve(fakePeople[i]), returnTime);
     } else {
-      reject({ message: "index out of range" });
+      reject({ message: 'index out of range' });
     }
   });
 };
@@ -71,9 +71,9 @@ function timerPromiser(time, text) {
 
 function getAllTimer() {
   return Promise.all([
-    timerPromiser(3000, "one"),
-    timerPromiser(1000, "two"),
-    timerPromiser(2000, "three"),
+    timerPromiser(3000, 'one'),
+    timerPromiser(1000, 'two'),
+    timerPromiser(2000, 'three'),
   ]);
 }
 

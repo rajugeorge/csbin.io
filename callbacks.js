@@ -64,7 +64,7 @@ function intersection(...arrays) {
     (accumulator, array) => {
       return filter(accumulator, (value) => includes(array, value));
     },
-    arrays[0]
+    arrays[0],
   );
   const unique = [];
   forEach(allvalues, (value) => {
@@ -87,7 +87,7 @@ function union(...arrays) {
       });
       return copyArray;
     },
-    []
+    [],
   );
   return allValues;
 }
@@ -149,10 +149,10 @@ function prioritize(array, callback) {
 
 function countBy(array, callback) {
   const obj = {};
-  let key = "";
+  let key = '';
   forEach(array, (item) => {
     key = callback(item);
-    if (obj.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       obj[key] = ++obj[key];
     } else {
       obj[key] = 1;
@@ -163,10 +163,10 @@ function countBy(array, callback) {
 
 function groupBy(array, callback) {
   const obj = {};
-  let key = "";
+  let key = '';
   forEach(array, (item) => {
     key = callback(item);
-    if (!obj.hasOwnProperty(key)) {
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) {
       obj[key] = [];
     }
     obj[key].push(item);
@@ -218,7 +218,7 @@ function pipe(arrOfFuncs, value) {
 
 function highestFunc(objOfFuncs, subject) {
   let highestValue = 0;
-  let highestKey = "";
+  let highestKey = '';
   forEachObject(objOfFuncs, (fn, key) => {
     let currentValue = fn(subject);
     if (highestValue < currentValue) {
@@ -250,7 +250,7 @@ function myFunc(array, callback) {
 }
 
 function myForEach(array, callback) {
-  forEach(array, (value, index) => {
+  forEach(array, (value) => {
     callback(value);
   });
 }

@@ -1,22 +1,22 @@
 function sayHowdy() {
-  console.log("Howdy");
+  console.log('Howdy');
 }
 
 function testMe() {
   setTimeout(sayHowdy, 0);
-  console.log("Partnah");
+  console.log('Partnah');
 }
 
 function delayedGreet() {
   setTimeout(() => {
-    console.log("hello");
+    console.log('hello');
   }, 3000);
 }
 
 function helloGoodbye() {
-  console.log("hello");
+  console.log('hello');
   setTimeout(() => {
-    console.log("Goodbye");
+    console.log('Goodbye');
   }, 3000);
 }
 
@@ -24,7 +24,7 @@ function brokenRecord() {
   let count = 0;
   const timeInterval = setInterval(() => {
     if (count < 10) {
-      console.log("hi again");
+      console.log('hi again');
       count++;
     } else {
       clearInterval(timeInterval);
@@ -36,7 +36,7 @@ function limitedRepeat(limit) {
   let count = 0;
   const timeInterval = setInterval(() => {
     if (count < limit) {
-      console.log("hi for now");
+      console.log('hi for now');
       count++;
     } else {
       clearInterval(timeInterval);
@@ -57,7 +57,7 @@ function everyXsecsForYsecs(cb, interval, duration) {
 }
 
 function promised(val) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(val);
     }, 2000);

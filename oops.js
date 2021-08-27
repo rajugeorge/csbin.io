@@ -7,7 +7,7 @@ function makePerson(name, age) {
 
 const personStore = {
   greet: function () {
-    return "hello";
+    return 'hello';
   },
 };
 
@@ -19,7 +19,7 @@ function personFromPersonStore(name, age) {
   return obj;
 }
 
-const sandra = personFromPersonStore("Sandra", 26);
+const sandra = personFromPersonStore('Sandra', 26);
 
 personStore.introduce = function (name) {
   return `Hi, my name is ${name}`;
@@ -28,7 +28,7 @@ personStore.introduce = function (name) {
 function PersonConstructor() {
   // add code here
   this.greet = function () {
-    return "hello";
+    return 'hello';
   };
 }
 
@@ -50,7 +50,7 @@ class PersonClass {
   }
 
   greet() {
-    return "hello";
+    return 'hello';
   }
 }
 
@@ -72,7 +72,7 @@ const userFunctionStore = {
 
 function userFactory(name, score) {
   let user = Object.create(userFunctionStore);
-  user.type = "User";
+  user.type = 'User';
   user.name = name;
   user.score = score;
   return user;
@@ -87,7 +87,7 @@ adminFunctionStore.sharedPublicMessage = function (text) {
 function adminFactory(name, score) {
   const user = userFactory(name, score);
   Object.setPrototypeOf(user, adminFunctionStore);
-  user.type = "Admin";
+  user.type = 'Admin';
   return user;
 }
 
@@ -96,12 +96,12 @@ class Dog {
     this.legs = 4;
   }
   speak() {
-    return "Woof!";
+    return 'Woof!';
   }
 }
 
 const robotMixin = {
-  skin: "metal",
+  skin: 'metal',
   speak: function () {
     return `I have ${this.legs} legs and am made of ${this.skin}`;
   },

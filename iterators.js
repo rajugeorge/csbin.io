@@ -60,7 +60,7 @@ function Words(string) {
 }
 
 Words.prototype[Symbol.iterator] = function () {
-  let words = this.str.split(" ");
+  let words = this.str.split(' ');
   let count = 0;
   let limit = words.length;
   return {
@@ -75,7 +75,7 @@ Words.prototype[Symbol.iterator] = function () {
 
 function valueAndPrevIndex(array) {
   let index = 0;
-  let statement = "";
+  let statement = '';
   let limit = array.length;
   return {
     sentence() {
@@ -97,19 +97,19 @@ function valueAndPrevIndex(array) {
 function* createConversation(text) {
   // use setInterval here, if not running unit tests
   yield setTimeout(() => {
-    if (text === "english") {
-      console.log("hello world");
+    if (text === 'english') {
+      console.log('hello world');
     } else {
-      console.log("gibberish");
+      console.log('gibberish');
     }
   }, 3000);
 }
 
 function waitForVerb(noun) {
-  const verb = "sitting";
+  const verb = 'sitting';
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(noun + " " + verb);
+      resolve(noun + ' ' + verb);
     }, 3000);
   });
 }

@@ -1,6 +1,6 @@
 function createFunction() {
   function callHello() {
-    console.log("hello");
+    console.log('hello');
   }
   return callHello;
 }
@@ -19,7 +19,7 @@ function outer() {
   let counter = 0; // this variable is outside incrementCounter's scope
   function incrementCounter() {
     counter++;
-    console.log("counter", counter);
+    console.log('counter', counter);
   }
   return incrementCounter;
 }
@@ -83,7 +83,7 @@ function delay(func, wait, ...rest) {
 function rollCall(names) {
   let index = 0;
   return function () {
-    let name = "Everyone accounted for";
+    let name = 'Everyone accounted for';
     if (index < names.length) {
       name = names[index];
       index++;
@@ -118,7 +118,7 @@ function cycleIterator(array) {
   // create and return a function that takes no arguments
   return function () {
     // create a variable to store the value in current index.
-    let name = "";
+    let name = '';
     // if index is greater than or equal to array length
     if (index >= array.length) {
       // reset the index to 0
@@ -221,13 +221,13 @@ function russianRoulette(num) {
     i++;
     // if the variable is greater than limit return 'reload to play again'
     if (i > num) {
-      return "reload to play again";
+      return 'reload to play again';
     } else if (i === num) {
       // if the variable is equal to limit return 'bang'
-      return "bang";
+      return 'bang';
     } else if (i < num) {
       // if the variable is less than limit return 'click'
-      return "click";
+      return 'click';
     }
   };
 }
@@ -278,7 +278,7 @@ function makeHistory(limit) {
   let index = -1;
   return function (str) {
     // if push
-    if (str !== "undo") {
+    if (str !== 'undo') {
       // increment the index
       index++;
       // if index > limit
@@ -289,7 +289,7 @@ function makeHistory(limit) {
       }
       // push to the array
       history.push(str);
-      return str + " done";
+      return str + ' done';
     } else {
       // else
       // if undo
@@ -300,11 +300,11 @@ function makeHistory(limit) {
         // reduce the index
         index--;
         var removedElement = history.pop();
-        return removedElement + " undone";
+        return removedElement + ' undone';
       } else {
         // else
         // print "nothing to undo"
-        return "nothing to undo";
+        return 'nothing to undo';
       }
     }
   };
@@ -318,7 +318,7 @@ function blackjack(inputArr) {
     let sum = 0;
     return function () {
       if (busted) {
-        return "you are done!";
+        return 'you are done!';
       }
       if (!started) {
         started = true;
@@ -329,7 +329,7 @@ function blackjack(inputArr) {
       }
       if (sum > 21) {
         busted = true;
-        return "bust";
+        return 'bust';
       } else {
         return sum;
       }

@@ -1,11 +1,11 @@
-const recursion = require("./recursion");
+const recursion = require('./recursion');
 
-test("countdown", () => {
+test('countdown', () => {
   recursion.countdown(5);
   recursion.countdown(10);
 });
 
-test("sum array", () => {
+test('sum array', () => {
   //   recursion.sum = (Array) => 3;
 
   const result1 = recursion.sum([1, 1, 1]);
@@ -15,16 +15,16 @@ test("sum array", () => {
   expect(result2).toEqual(21);
 });
 
-test("palindrome", () => {
+test('palindrome', () => {
   // recursion.palindrome = (string) => true;
   expect(
-    recursion.palindrome("Anne, I vote more cars race Rome-to-Vienna")
+    recursion.palindrome('Anne, I vote more cars race Rome-to-Vienna'),
   ).toBe(true); //-> true
-  expect(recursion.palindrome("llama mall")).toBe(true); //-> true
-  expect(recursion.palindrome("jmoney")).toBe(false); //-> false
+  expect(recursion.palindrome('llama mall')).toBe(true); //-> true
+  expect(recursion.palindrome('jmoney')).toBe(false); //-> false
 });
 
-test("isPrime", () => {
+test('isPrime', () => {
   // recursion.isPrime = (num) => true;
   expect(recursion.isPrime(1)).toBe(false); //-> false
   expect(recursion.isPrime(2)).toBe(true); //-> true
@@ -32,29 +32,29 @@ test("isPrime", () => {
   expect(recursion.isPrime(4)).toBe(false); //-> false
 });
 
-test("pathFinder", () => {
+test('pathFinder', () => {
   // recursion.pathFinder = (obj, arr) => "finish";
-  const obj1 = { first: "start" };
+  const obj1 = { first: 'start' };
   const obj2 = { first: 2 };
   const obj3 = { first: true };
   const obj4 = {
-    first: { second: { third: "finish" } },
-    second: { third: "wrong" },
+    first: { second: { third: 'finish' } },
+    second: { third: 'wrong' },
   };
 
-  const arr1 = ["first"];
-  const arr2 = ["first", "second", "third"];
-  const arr3 = ["second", "third"];
+  const arr1 = ['first'];
+  const arr2 = ['first', 'second', 'third'];
+  const arr3 = ['second', 'third'];
 
-  expect(recursion.pathFinder(obj1, arr1)).toEqual("start"); //->
+  expect(recursion.pathFinder(obj1, arr1)).toEqual('start'); //->
   expect(recursion.pathFinder(obj2, arr1)).toEqual(2); //->
   expect(recursion.pathFinder(obj3, arr1)).toEqual(true); //->
   expect(recursion.pathFinder(obj4, arr1)).toEqual(undefined); //->
-  expect(recursion.pathFinder(obj4, arr2)).toEqual("finish"); //->
-  expect(recursion.pathFinder(obj4, arr3)).toEqual("wrong"); //->
+  expect(recursion.pathFinder(obj4, arr2)).toEqual('finish'); //->
+  expect(recursion.pathFinder(obj4, arr3)).toEqual('wrong'); //->
 });
 
-test("flattenRecursively", () => {
+test('flattenRecursively', () => {
   // recursion.flattenRecursively = (Array) => [1, 2, 3, 4];
   expect(recursion.flattenRecursively([[1, 3]])).toEqual([1, 3]);
   expect(recursion.flattenRecursively([1, [2, 3, [4]]])).toEqual([1, 2, 3, 4]); //->
@@ -67,7 +67,7 @@ test("flattenRecursively", () => {
 });
 
 //Challenge 7
-test("findInOrderedSet", () => {
+test('findInOrderedSet', () => {
   // recursion.findInOrderedSet = (i, j) => true;
   const nums1 = [];
   const nums2 = [2];
@@ -88,7 +88,7 @@ test("findInOrderedSet", () => {
   expect(recursion.findInOrderedSet(nums5, 2)).toBe(false);
 });
 
-test("countWaysToReachNthStair", () => {
+test('countWaysToReachNthStair', () => {
   // recursion.countWaysToReachNthStair = (num) => 1;
   expect(recursion.countWaysToReachNthStair(1)).toEqual(1); //-> 1 (only one way to climb 1 stair)
   expect(recursion.countWaysToReachNthStair(2)).toEqual(2); //-> 2 ((1, 1), (2))
@@ -111,7 +111,7 @@ test("countWaysToReachNthStair", () => {
 //   ]); //->
 // });
 
-test("getRangeBetween", () => {
+test('getRangeBetween', () => {
   // recursion.getRangeBetween = (start, end) => [1, 2, 3];
 
   expect(recursion.getRangeBetween(2, 9)).toEqual([3, 4, 5, 6, 7, 8]);

@@ -1,31 +1,31 @@
-const closures = require("./closures");
+const closures = require('./closures');
 
 afterEach(() => {
   jest.useRealTimers();
 });
 
-test("createFunction", () => {
+test('createFunction', () => {
   let wrapper = closures.createFunction;
 
   let closure = jest.fn(wrapper());
 
-  expect(typeof closure).toBe("function");
+  expect(typeof closure).toBe('function');
 });
 
-test("createFunctionPrinter", () => {
+test('createFunctionPrinter', () => {
   //   closures.createFunctionPrinter = jest.fn((sample) => () => sample);
 
   const wrapper = jest.fn(closures.createFunctionPrinter);
 
-  const closure1 = jest.fn(wrapper("sample"));
-  const closure2 = jest.fn(wrapper("hello"));
+  const closure1 = jest.fn(wrapper('sample'));
+  const closure2 = jest.fn(wrapper('hello'));
 
-  expect(typeof closure1).toBe("function");
-  expect(typeof closure2).toBe("function");
-  expect(wrapper.mock.calls).toEqual([["sample"], ["hello"]]);
+  expect(typeof closure1).toBe('function');
+  expect(typeof closure2).toBe('function');
+  expect(wrapper.mock.calls).toEqual([['sample'], ['hello']]);
 });
 
-test("outer", () => {
+test('outer', () => {
   // closures.outer = jest.fn(() => () => {
   //   console.log("done");
   // });
@@ -40,10 +40,10 @@ test("outer", () => {
   // closure2();
   // closure1();
 
-  expect(typeof closure1).toBe("function");
+  expect(typeof closure1).toBe('function');
 });
 
-test("addByX", () => {
+test('addByX', () => {
   // closures.addByX = jest.fn((x) => (i) => 4);
 
   const addByTwo = closures.addByX(2);
@@ -71,7 +71,7 @@ test("addByX", () => {
   expect(result7).toEqual(9);
 });
 
-test("once", () => {
+test('once', () => {
   // closures.once = jest.fn(
   //   (fn) =>
   //     (...args) =>
@@ -91,7 +91,7 @@ test("once", () => {
   expect(result3).toEqual(6);
 });
 
-test("after", () => {
+test('after', () => {
   // closures.after = jest.fn(
   //   (count, fn) =>
   //     (...args) =>
@@ -99,7 +99,7 @@ test("after", () => {
   // );
 
   const called = jest.fn(function () {
-    console.log("hello");
+    console.log('hello');
   });
   const afterCalled = closures.after(3, called);
 
@@ -110,7 +110,7 @@ test("after", () => {
   expect(called).toHaveBeenCalledTimes(1);
 });
 
-test("delay", () => {
+test('delay', () => {
   // closures.delay = jest.fn((fn, wait, ...rest) => (...args) => {
   //   fn(...rest, ...args);
   // });
@@ -135,10 +135,10 @@ test("delay", () => {
   expect(called).toHaveBeenCalledTimes(1, 2, 3, 4, 5, 6);
 });
 
-test("rollCall", () => {
+test('rollCall', () => {
   // closures.rollCall = jest.fn((names) => () => "Victoria");
 
-  const rollCaller = closures.rollCall(["Victoria", "Juan", "Ruth"]);
+  const rollCaller = closures.rollCall(['Victoria', 'Juan', 'Ruth']);
   const result1 = rollCaller();
   const result2 = rollCaller();
   const result3 = rollCaller();
@@ -147,43 +147,43 @@ test("rollCall", () => {
   const rollCaller2 = closures.rollCall([]);
   const result5 = rollCaller2();
 
-  expect(result1).toEqual("Victoria");
-  expect(result2).toEqual("Juan");
-  expect(result3).toEqual("Ruth");
-  expect(result4).toEqual("Everyone accounted for");
-  expect(result5).toEqual("Everyone accounted for");
+  expect(result1).toEqual('Victoria');
+  expect(result2).toEqual('Juan');
+  expect(result3).toEqual('Ruth');
+  expect(result4).toEqual('Everyone accounted for');
+  expect(result5).toEqual('Everyone accounted for');
 });
 
-test("8. saveOutput", () => {
+test('8. saveOutput', () => {
   // closures.saveOutput = (fn, magicWord) => (num) => {
   //   return { 2: 4, 9: 18 };
   // };
 
   const multiplyBy2 = (num) => num * 2;
-  const multBy2AndLog = closures.saveOutput(multiplyBy2, "boo");
+  const multBy2AndLog = closures.saveOutput(multiplyBy2, 'boo');
   multBy2AndLog(2);
   multBy2AndLog(9);
-  const total = multBy2AndLog("boo");
+  const total = multBy2AndLog('boo');
 
   expect(total).toEqual({ 2: 4, 9: 18 });
 });
 
-test("cycleIterator", () => {
+test('cycleIterator', () => {
   // closures.cycleIterator = jest.fn((input) => () => "Fri");
 
-  const getDay = closures.cycleIterator(["Fri", "Sat", "Sun"]);
+  const getDay = closures.cycleIterator(['Fri', 'Sat', 'Sun']);
   const result1 = getDay();
   const result2 = getDay();
   const result3 = getDay();
   const result4 = getDay();
 
-  expect(result1).toEqual("Fri");
-  expect(result2).toEqual("Sat");
-  expect(result3).toEqual("Sun");
-  expect(result4).toEqual("Fri");
+  expect(result1).toEqual('Fri');
+  expect(result2).toEqual('Sat');
+  expect(result3).toEqual('Sun');
+  expect(result4).toEqual('Fri');
 });
 
-test("defineFirstArg", () => {
+test('defineFirstArg', () => {
   // closures.defineFirstArg = jest.fn(
   //   (func, arg) =>
   //     (...args) =>
@@ -199,7 +199,7 @@ test("defineFirstArg", () => {
   expect(result).toEqual(15);
 });
 
-test("dateStamp", () => {
+test('dateStamp', () => {
   // closures.dateStamp =
   //   (func) =>
   //   (...args) => {
@@ -218,7 +218,7 @@ test("dateStamp", () => {
   Date.now = dateNow;
 });
 
-test("censor", () => {
+test('censor', () => {
   // closures.censor = jest.fn(
   //   () =>
   //     (...args) =>
@@ -226,18 +226,18 @@ test("censor", () => {
   // );
 
   const changeScene = closures.censor();
-  changeScene("dogs", "cats");
-  changeScene("quick", "slow");
-  let result = changeScene("The quick, brown fox jumps over the lazy dogs.");
+  changeScene('dogs', 'cats');
+  changeScene('quick', 'slow');
+  let result = changeScene('The quick, brown fox jumps over the lazy dogs.');
 
   const changeScene2 = closures.censor();
-  let result2 = changeScene2("The quick, brown fox jumps over the lazy dogs.");
+  let result2 = changeScene2('The quick, brown fox jumps over the lazy dogs.');
 
-  expect(result).toEqual("The slow, brown fox jumps over the lazy cats.");
-  expect(result2).toEqual("The quick, brown fox jumps over the lazy dogs.");
+  expect(result).toEqual('The slow, brown fox jumps over the lazy cats.');
+  expect(result2).toEqual('The quick, brown fox jumps over the lazy dogs.');
 });
 
-test("createSecretHolder", () => {
+test('createSecretHolder', () => {
   // closures.createSecretHolder = (input) => {
   //   let value = input;
   //   return {
@@ -260,7 +260,7 @@ test("createSecretHolder", () => {
   expect(result).toEqual(12);
 });
 
-test("callTimes", () => {
+test('callTimes', () => {
   // closures.callTimes = () => {
   //   let i = 0;
   //   return () => ++i;
@@ -275,7 +275,7 @@ test("callTimes", () => {
   expect(myNewFunc2()).toEqual(2);
 });
 
-test("russianRoulette", () => {
+test('russianRoulette', () => {
   // closures.russianRoulette = (limit) => {
   //   let i = 0;
   //   return function () {
@@ -291,14 +291,14 @@ test("russianRoulette", () => {
   // };
 
   const play = closures.russianRoulette(3);
-  expect(play()).toEqual("click"); // => should log 'click'
-  expect(play()).toEqual("click"); // => should log 'click'
-  expect(play()).toEqual("bang"); // => should log 'bang'
-  expect(play()).toEqual("reload to play again"); // => should log 'reload to play again'
-  expect(play()).toEqual("reload to play again"); // => should log 'reload to play again'
+  expect(play()).toEqual('click'); // => should log 'click'
+  expect(play()).toEqual('click'); // => should log 'click'
+  expect(play()).toEqual('bang'); // => should log 'bang'
+  expect(play()).toEqual('reload to play again'); // => should log 'reload to play again'
+  expect(play()).toEqual('reload to play again'); // => should log 'reload to play again'
 });
 
-test("average", () => {
+test('average', () => {
   // closures.average = () => (input) => input;
 
   const avgSoFar = closures.average();
@@ -311,13 +311,13 @@ test("average", () => {
   expect(avgSoFar()).toEqual(8); // => should log 8
 });
 
-test("makeFuncTester", () => {
+test('makeFuncTester', () => {
   // closures.makeFuncTester = (inputs) => (cb) => true;
 
   const capLastTestCases = [];
-  capLastTestCases.push(["hello", "hellO"]);
-  capLastTestCases.push(["goodbye", "goodbyE"]);
-  capLastTestCases.push(["howdy", "howdY"]);
+  capLastTestCases.push(['hello', 'hellO']);
+  capLastTestCases.push(['goodbye', 'goodbyE']);
+  capLastTestCases.push(['howdy', 'howdY']);
   const shouldCapitalizeLast = closures.makeFuncTester(capLastTestCases);
   const capLastAttempt1 = (str) => str.toUpperCase();
   const capLastAttempt2 = (str) =>
@@ -326,21 +326,21 @@ test("makeFuncTester", () => {
   expect(shouldCapitalizeLast(capLastAttempt2)).toEqual(true); // => should log true
 });
 
-test("makeHistory", () => {
+test('makeHistory', () => {
   // closures.makeHistory = (input) => (str) => str;
 
   const myActions = closures.makeHistory(2);
-  expect(myActions("jump")).toEqual("jump done"); // => should log 'jump done'
-  expect(myActions("undo")).toEqual("jump undone"); // => should log 'jump undone'
-  expect(myActions("walk")).toEqual("walk done"); // => should log 'walk done'
-  expect(myActions("code")).toEqual("code done"); // => should log 'code done'
-  expect(myActions("pose")).toEqual("pose done"); // => should log 'pose done'
-  expect(myActions("undo")).toEqual("pose undone"); // => should log 'pose undone'
-  expect(myActions("undo")).toEqual("code undone"); // => should log 'code undone'
-  expect(myActions("undo")).toEqual("nothing to undo"); // => should log 'nothing to undo'
+  expect(myActions('jump')).toEqual('jump done'); // => should log 'jump done'
+  expect(myActions('undo')).toEqual('jump undone'); // => should log 'jump undone'
+  expect(myActions('walk')).toEqual('walk done'); // => should log 'walk done'
+  expect(myActions('code')).toEqual('code done'); // => should log 'code done'
+  expect(myActions('pose')).toEqual('pose done'); // => should log 'pose done'
+  expect(myActions('undo')).toEqual('pose undone'); // => should log 'pose undone'
+  expect(myActions('undo')).toEqual('code undone'); // => should log 'code undone'
+  expect(myActions('undo')).toEqual('nothing to undo'); // => should log 'nothing to undo'
 });
 
-test("blackjack", () => {
+test('blackjack', () => {
   // closures.blackjack = (inputArr) => (num1, num2) => () => num1 + num2;
 
   /*** DEALER ***/
@@ -354,9 +354,9 @@ test("blackjack", () => {
   expect(i_like_to_live_dangerously()).toEqual(11); // => should log 11
   expect(i_like_to_live_dangerously()).toEqual(17); // => should log 17
   expect(i_like_to_live_dangerously()).toEqual(18); // => should log 18
-  expect(i_like_to_live_dangerously()).toEqual("bust"); // => should log 'bust'
-  expect(i_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!'
-  expect(i_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!'
+  expect(i_like_to_live_dangerously()).toEqual('bust'); // => should log 'bust'
+  expect(i_like_to_live_dangerously()).toEqual('you are done!'); // => should log 'you are done!'
+  expect(i_like_to_live_dangerously()).toEqual('you are done!'); // => should log 'you are done!'
 
   /*** BELOW LINES ARE FOR THE BONUS ***/
 
@@ -365,15 +365,15 @@ test("blackjack", () => {
   expect(i_TOO_like_to_live_dangerously()).toEqual(4); // => should log 4
   expect(i_TOO_like_to_live_dangerously()).toEqual(15); // => should log 15
   expect(i_TOO_like_to_live_dangerously()).toEqual(19); // => should log 19
-  expect(i_TOO_like_to_live_dangerously()).toEqual("bust"); // => should log 'bust'
-  expect(i_TOO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
-  expect(i_TOO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
+  expect(i_TOO_like_to_live_dangerously()).toEqual('bust'); // => should log 'bust'
+  expect(i_TOO_like_to_live_dangerously()).toEqual('you are done!'); // => should log 'you are done!
+  expect(i_TOO_like_to_live_dangerously()).toEqual('you are done!'); // => should log 'you are done!
 
   /*** PLAYER 3 ***/
   const i_ALSO_like_to_live_dangerously = deal(3, 7);
   expect(i_ALSO_like_to_live_dangerously()).toEqual(10); // => should log 10
   expect(i_ALSO_like_to_live_dangerously()).toEqual(13); // => should log 13
-  expect(i_ALSO_like_to_live_dangerously()).toEqual("bust"); // => should log 'bust'
-  expect(i_ALSO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
-  expect(i_ALSO_like_to_live_dangerously()).toEqual("you are done!"); // => should log 'you are done!
+  expect(i_ALSO_like_to_live_dangerously()).toEqual('bust'); // => should log 'bust'
+  expect(i_ALSO_like_to_live_dangerously()).toEqual('you are done!'); // => should log 'you are done!
+  expect(i_ALSO_like_to_live_dangerously()).toEqual('you are done!'); // => should log 'you are done!
 });

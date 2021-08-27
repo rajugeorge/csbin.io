@@ -1,33 +1,33 @@
-const csbin = require("./callbacks");
+const csbin = require('./callbacks');
 
-describe("array functions", () => {
-  test("Array forEach", () => {
-    let result = "";
-    csbin.forEach(["a", "b", "c"], (input) => {
+describe('array functions', () => {
+  test('Array forEach', () => {
+    let result = '';
+    csbin.forEach(['a', 'b', 'c'], (input) => {
       result += input;
     });
 
-    let expected = "abc";
+    let expected = 'abc';
 
     expect(result).toBe(expected);
   });
 
-  test("Array Every", () => {
-    let result = "";
-    csbin.every(["a", "b", "c"], (input) => {
+  test('Array Every', () => {
+    let result = '';
+    csbin.every(['a', 'b', 'c'], (input) => {
       result += input;
-      if (input === "b") {
+      if (input === 'b') {
         return false;
       }
       return true;
     });
 
-    let expected = "ab";
+    let expected = 'ab';
 
     expect(result).toBe(expected);
   });
 
-  test("Array Map", () => {
+  test('Array Map', () => {
     const callback = jest.fn((input) => input + 2);
     let result = csbin.map([1, 2, 3], callback);
     let expected = [3, 4, 5];
@@ -36,26 +36,26 @@ describe("array functions", () => {
     expect(callback.mock.calls).toEqual([[1], [2], [3]]);
   });
 
-  test("Array Includes", () => {
+  test('Array Includes', () => {
     const result = csbin.includes([5, 10, 15, 20], 10);
     const expected = true;
 
     expect(result).toEqual(expected);
   });
 
-  test("Array filter", () => {
+  test('Array filter', () => {
     const result = csbin.filter([5, 10, 15, 20], (item) => item > 10);
     const expected = [15, 20];
 
     expect(result).toEqual(expected);
   });
-  test("Array Reducer", () => {
+  test('Array Reducer', () => {
     let result = csbin.reduce(
       [1, 2, 3, 4, 5, 6],
       (accumulator, input) => {
         return input % 2 == 0 ? accumulator + input : accumulator;
       },
-      0
+      0,
     );
 
     let expected = 12;
@@ -63,17 +63,17 @@ describe("array functions", () => {
     expect(result).toBe(expected);
   });
 
-  test("Object forEach", () => {
-    let result = "";
+  test('Object forEach', () => {
+    let result = '';
     const callback = (value, key) => (result += key + value);
-    csbin.forEachObject({ a: "one", b: 2, c: true }, callback);
-    let expected = "aoneb2ctrue";
+    csbin.forEachObject({ a: 'one', b: 2, c: true }, callback);
+    let expected = 'aoneb2ctrue';
 
     expect(result).toEqual(expected);
   });
 });
 
-test("Add two numbers", () => {
+test('Add two numbers', () => {
   const result = csbin.addTwo(3);
   const expected = 5;
 
@@ -84,45 +84,45 @@ test("Add two numbers", () => {
   expect(result2).toBe(expected2);
 });
 
-test("Intersection", () => {
+test('Intersection', () => {
   const result = csbin.intersection(
     [5, 10, 15, 5, 20, 1, 1, 1, 1, 1],
     [15, 88, 1, 5, 7],
-    [1, 10, 15, 5, 1, 20]
+    [1, 10, 15, 5, 1, 20],
   );
   const expected = [5, 15, 1];
 
   expect(result).toEqual(expected);
 });
 
-test("Union", () => {
+test('Union', () => {
   const result = csbin.union(
     [5, 10, 15],
     [15, 88, 1, 5, 7],
-    [100, 15, 10, 1, 5]
+    [100, 15, 10, 1, 5],
   );
   const expected = [5, 10, 15, 88, 1, 7, 100];
 
   expect(result).toEqual(expected);
 });
 
-test("objOfMatches", () => {
+test('objOfMatches', () => {
   // csbin.objOfMatches = jest.fn((input) => {
   //   return { hi: "HI", bye: "BYE", later: "LATER" };
   // });
   let result = csbin.objOfMatches(
-    ["hi", "howdy", "bye", "later", "hello"],
-    ["HI", "Howdy", "BYE", "LATER", "hello"],
+    ['hi', 'howdy', 'bye', 'later', 'hello'],
+    ['HI', 'Howdy', 'BYE', 'LATER', 'hello'],
     function (str) {
       return str.toUpperCase();
-    }
+    },
   );
-  let expected = { hi: "HI", bye: "BYE", later: "LATER" };
+  let expected = { hi: 'HI', bye: 'BYE', later: 'LATER' };
 
   expect(result).toEqual(expected);
 });
 
-test("multiMap", () => {
+test('multiMap', () => {
   // csbin.multiMap = jest.fn((input) => {
   //   return {
   //     catfood: ["CATFOOD", "Catfood", "catfoodcatfood"],
@@ -131,7 +131,7 @@ test("multiMap", () => {
   //   };
   // });
   let result = csbin.multiMap(
-    ["catfood", "glue", "beer"],
+    ['catfood', 'glue', 'beer'],
     [
       function (str) {
         return str.toUpperCase();
@@ -142,34 +142,34 @@ test("multiMap", () => {
       function (str) {
         return str + str;
       },
-    ]
+    ],
   );
   let expected = {
-    catfood: ["CATFOOD", "Catfood", "catfoodcatfood"],
-    glue: ["GLUE", "Glue", "glueglue"],
-    beer: ["BEER", "Beer", "beerbeer"],
+    catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'],
+    glue: ['GLUE', 'Glue', 'glueglue'],
+    beer: ['BEER', 'Beer', 'beerbeer'],
   };
 
   expect(result).toEqual(expected);
 });
 
-test("objectFilter", () => {
+test('objectFilter', () => {
   let callback = jest.fn((city) => city.toUpperCase());
   let result = csbin.objectFilter(
     {
-      London: "LONDON",
-      LA: "Los Angeles",
-      Paris: "PARIS",
+      London: 'LONDON',
+      LA: 'Los Angeles',
+      Paris: 'PARIS',
     },
-    callback
+    callback,
   );
-  let expected = { London: "LONDON", Paris: "PARIS" };
+  let expected = { London: 'LONDON', Paris: 'PARIS' };
 
   expect(result).toEqual(expected);
-  expect(callback.mock.calls).toEqual([["London"], ["LA"], ["Paris"]]);
+  expect(callback.mock.calls).toEqual([['London'], ['LA'], ['Paris']]);
 });
 
-test("majority", () => {
+test('majority', () => {
   // csbin.majority = jest.fn((input) => true);
   const callback = jest.fn((num) => {
     return num % 2 === 1;
@@ -182,7 +182,7 @@ test("majority", () => {
   expect(result2).toEqual(false);
 });
 
-test("prioritize", () => {
+test('prioritize', () => {
   // csbin.prioritize = jest.fn((i) => [
   //   "seinfeld",
   //   "sunny",
@@ -190,23 +190,23 @@ test("prioritize", () => {
   //   "rickandmorty",
   //   "friends",
   // ]);
-  const callback = jest.fn((str) => str[0] === "s" || str[0] === "S");
+  const callback = jest.fn((str) => str[0] === 's' || str[0] === 'S');
   let result = csbin.prioritize(
-    ["curb", "rickandmorty", "seinfeld", "sunny", "friends"],
-    callback
+    ['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'],
+    callback,
   );
-  let expected = ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
+  let expected = ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
 
   expect(result).toEqual(expected);
 });
 
-test("countBy", () => {
+test('countBy', () => {
   // csbin.countBy = jest.fn((i) => {
   //   return { odd: 3, even: 2 };
   // });
   const callback = jest.fn((num) => {
-    if (num % 2 === 0) return "even";
-    else return "odd";
+    if (num % 2 === 0) return 'even';
+    else return 'odd';
   });
   let result = csbin.countBy([1, 2, 3, 4, 5], callback);
   let expected = { odd: 3, even: 2 };
@@ -214,7 +214,7 @@ test("countBy", () => {
   expect(result).toEqual(expected);
 });
 
-test("groupBy", () => {
+test('groupBy', () => {
   // csbin.groupBy = jest.fn((i) => {
   //   return { 1: [1.3], 2: [2.1, 2.4] };
   // });
@@ -225,24 +225,24 @@ test("groupBy", () => {
   expect(result).toEqual(expected);
 });
 
-test("goodKeys", () => {
+test('goodKeys', () => {
   // csbin.goodKeys = jest.fn((i) => ["charlie", "dee"]);
-  const callback = (str) => str.slice(0, 4).toLowerCase() === "bird";
+  const callback = (str) => str.slice(0, 4).toLowerCase() === 'bird';
   let result = csbin.goodKeys(
     {
-      mac: "priest",
-      dennis: "calculating",
-      charlie: "birdlaw",
-      dee: "bird",
-      frank: "warthog",
+      mac: 'priest',
+      dennis: 'calculating',
+      charlie: 'birdlaw',
+      dee: 'bird',
+      frank: 'warthog',
     },
-    callback
+    callback,
   );
-  let expected = ["charlie", "dee"];
+  let expected = ['charlie', 'dee'];
   expect(result).toEqual(expected);
 });
 
-test("commutative", () => {
+test('commutative', () => {
   // csbin.commutative = jest.fn((i) => true);
 
   const cb1 = (n) => n * 3;
@@ -258,7 +258,7 @@ test("commutative", () => {
   expect(result3).toEqual(false);
 });
 
-test("objFilter", () => {
+test('objFilter', () => {
   // csbin.objFilter = jest.fn((i) => {
   //   return { 2: 1, 6: 3 };
   // });
@@ -269,12 +269,12 @@ test("objFilter", () => {
   expect(result).toEqual(expected);
 });
 
-test("rating", () => {
+test('rating', () => {
   // csbin.rating = jest.fn((i) => i);
   const cb1 = (n) => n % 2 === 0;
   const cb2 = (n) => n > 4;
   const cb3 = (n) => Math.sqrt(n) % 1 === 0;
-  const cb4 = (n) => n.toString().includes("6");
+  const cb4 = (n) => n.toString().includes('6');
 
   let result1 = csbin.rating([cb1, cb2, cb3, cb4], 64);
   let result2 = csbin.rating([cb1, cb2, cb3, cb4], 66);
@@ -283,19 +283,19 @@ test("rating", () => {
   expect(result2).toEqual(75);
 });
 
-test("pipe", () => {
+test('pipe', () => {
   // csbin.pipe = jest.fn((i) => "CATcatCATcat");
 
   const cb1 = (str) => str.toUpperCase();
   const cb2 = (str) => str + str.toLowerCase();
   const cb3 = (str) => str + str;
 
-  let result1 = csbin.pipe([cb1, cb2, cb3], "cat");
+  let result1 = csbin.pipe([cb1, cb2, cb3], 'cat');
 
-  expect(result1).toEqual("CATcatCATcat");
+  expect(result1).toEqual('CATcatCATcat');
 });
 
-test("highestFunc", () => {
+test('highestFunc', () => {
   // csbin.highestFunc = jest.fn((i) => "addTen");
 
   const cb1 = (n) => n * 2;
@@ -304,23 +304,23 @@ test("highestFunc", () => {
 
   let result1 = csbin.highestFunc(
     { double: cb1, addTen: cb2, inverse: cb3 },
-    5
+    5,
   );
   let result2 = csbin.highestFunc(
     { double: cb1, addTen: cb2, inverse: cb3 },
-    11
+    11,
   );
   let result3 = csbin.highestFunc(
     { double: cb1, addTen: cb2, inverse: cb3 },
-    -20
+    -20,
   );
 
-  expect(result1).toEqual("addTen");
-  expect(result2).toEqual("double");
-  expect(result3).toEqual("inverse");
+  expect(result1).toEqual('addTen');
+  expect(result2).toEqual('double');
+  expect(result3).toEqual('inverse');
 });
 
-test("combineOperations", () => {
+test('combineOperations', () => {
   const cb1 = (n) => n + 100;
   const cb2 = (n) => n / 5;
   const cb3 = (n) => n * 3;
@@ -332,7 +332,7 @@ test("combineOperations", () => {
   expect(result2).toEqual(100);
 });
 
-test("myFunc", () => {
+test('myFunc', () => {
   // csbin.myFunc = jest.fn((i) => i);
   const callback = (n) => n % 2 !== 0;
 
@@ -343,7 +343,7 @@ test("myFunc", () => {
   expect(result2).toEqual(-1);
 });
 
-test("myForEach", () => {
+test('myForEach', () => {
   // csbin.myForEach = jest.fn((i) => i);
   let sum = 0;
   const callback = (n) => (sum += n);

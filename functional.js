@@ -23,7 +23,7 @@ const numSelectString = (numArr) => {
     .sort((a, b) => a - b)
     .filter((el) => el % 2 === 1)
     .reduce((acc, curr) => {
-      return acc + ", " + curr;
+      return acc + ', ' + curr;
     });
 };
 

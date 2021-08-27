@@ -14,7 +14,7 @@ function sum(array, total = 0) {
 }
 
 function palindrome(string) {
-  string = string.replace(/\W/gi, "").toLowerCase();
+  string = string.replace(/\W/gi, '').toLowerCase();
   if (string.length <= 1) return true;
   if (string[0] !== string[string.length - 1]) return false;
   return palindrome(string.slice(1, -1));
@@ -29,7 +29,7 @@ function isPrime(num, base = 2) {
 
 function pathFinder(obj, arr) {
   if (obj === undefined) return undefined;
-  if (typeof obj !== "object") return obj;
+  if (typeof obj !== 'object') return obj;
   const newArr = [...arr];
   const newObj = obj[newArr[0]];
   newArr.shift();

@@ -1,12 +1,12 @@
 // uncomment below line if you are returning the promise commented for second challenge in promises.js
 //jest.useFakeTimers();
-const promises = require("./promises");
+const promises = require('./promises');
 
 afterEach(() => {
   jest.useRealTimers();
 });
 
-test("sayHello", () => {
+test('sayHello', () => {
   //   promises.sayHello = () => "Hello!";
 
   jest.useFakeTimers();
@@ -14,11 +14,11 @@ test("sayHello", () => {
   jest.runAllTimers();
 });
 
-test("promise", async () => {
+test('promise', async () => {
   // promises.promise = Promise.resolve("Resolved!!");
   jest.useFakeTimers();
   const spy = jest.fn((data) => {
-    expect(data).toEqual("Resolved!!!");
+    expect(data).toEqual('Resolved!!!');
   });
   promises.promise().then(spy);
   jest.runAllTimers();
@@ -26,10 +26,10 @@ test("promise", async () => {
   expect(spy).toHaveBeenCalled();
 });
 
-test("promise2", async () => {
+test('promise2', async () => {
   jest.useFakeTimers();
   const spy = jest.fn((data) => {
-    expect(data).toEqual("Rejected!!!");
+    expect(data).toEqual('Rejected!!!');
   });
   promises.promise2().catch(spy);
   jest.runAllTimers();
@@ -38,7 +38,7 @@ test("promise2", async () => {
 });
 
 // TBD
-test("delay", async () => {
+test('delay', async () => {
   // promises.delay = () => Promise.resolve();
   jest.useFakeTimers();
   const sayHello = jest.fn(promises.sayHello);
@@ -48,7 +48,7 @@ test("delay", async () => {
   expect(sayHello).toHaveBeenCalled();
 });
 
-test("promiseChain", async () => {
+test('promiseChain', async () => {
   // promises.secondPromise = Promise.resolve("Second!!!");
   // promises.firstPromise = Promise.resolve(promises.secondPromise);
 
@@ -56,26 +56,26 @@ test("promiseChain", async () => {
   const firstPromise = promises.firstPromise(secondPromise);
 
   firstPromise.then().then((data) => {
-    expect(data).toEqual("Second!!!");
+    expect(data).toEqual('Second!!!');
   });
 
   await Promise.resolve();
 });
 
-test("promiseAll", async () => {
+test('promiseAll', async () => {
   promises.getAllData().then((values) => {
     expect(values).toEqual([
-      { currentTemp: 98.6, hasPets: false, name: "Rudolph" },
-      { currentTemp: 22.6, hasPets: true, name: "Zebulon" },
-      { currentTemp: 98.3, hasPets: true, name: "Harold" },
+      { currentTemp: 98.6, hasPets: false, name: 'Rudolph' },
+      { currentTemp: 22.6, hasPets: true, name: 'Zebulon' },
+      { currentTemp: 98.3, hasPets: true, name: 'Harold' },
     ]);
   });
 });
 
-test("promiseTimerAll", async () => {
+test('promiseTimerAll', async () => {
   jest.useFakeTimers();
   promises.getAllTimer().then((values) => {
-    expect(values).toEqual(["one", "two", "three"]);
+    expect(values).toEqual(['one', 'two', 'three']);
   });
   jest.runAllTimers();
 });
