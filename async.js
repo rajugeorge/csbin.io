@@ -14,7 +14,7 @@ function delayedGreet() {
 }
 
 function helloGoodbye() {
-  console.log('hello');
+  console.log('hellos');
   setTimeout(() => {
     console.log('Goodbye');
   }, 3000);
